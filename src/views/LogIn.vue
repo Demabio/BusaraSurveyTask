@@ -94,7 +94,8 @@ export default {
         grant_type:grant_type,
       };
       const requestOptions = {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: qs.stringify({
           client_idd :'pw5ExLyIcOnxF3B0wna1m7qqHlKVvrB2VFHGtyHB',
           client_secret:'xqsESmmZxlwGokFuqQTigIwF3hyIWykudx6TCKseGeQIVlSApmscBNlugvfEUO7jh1HJUdXQTreYXJ93nayBjX4jlb8Zzxr4sxJXxJFHRQsMncxtoeUZwwNihdzBB039',
