@@ -2,25 +2,40 @@
     <div class="page-my-account">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <h1 class="title">My account</h1>
+                <h1 class="title">Account Details</h1>
             </div>
-
-            <div class="column is-12">
-                <button @click="logout()" class="button is-danger">Log out</button>
-            </div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Refferal Code</th>
+              <th>Universe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{orders.first_name}}</td>
+              <td>{{orders.last_name}}</td>
+              <td>{{orders.email}}</td>
+              <td>{{orders.phone_number}}</td>
+              <td>{{orders.referral_code}}</td>
+              <td>{{orders.universe_name}}</td>
+            </tr>
+          
+        
+            </tbody>
+          </table>
+        </div>
+           
 
             <hr>
 
-            <div class="column is-12">
-                <h2 class="subtitle">My orders</h2>
-
-                <OrderSummary
-                    v-for="order in orders"
-                    v-bind:key="order.name"
-                    v-bind:order="order" />
-            </div>
+           
         </div>
-    </div>
+    
 </template>
 
 <script>
@@ -56,6 +71,11 @@ export default {
     },
 
     methods: {
+      cartTotalLength() {
+        let name= localStorage.getItem("name")
+        console.log('Kwa majina ni:'+name)
+        return name
+      },
         logout() {
             axios.defaults.headers.common["Authorization"] = ""
 
@@ -78,10 +98,10 @@ export default {
             })
                 .get('/api/v1/users/current-user')
                 .then(response => {
-                    this.orders = response.data.name
-                  console.log('Busara Says Woot:' +response.data.universe_name)
+                    this.orders = response.data
+                  console.log('Busara Says Woot:' +JSON.stringify(response))
                   localStorage.setItem("name", response.data.name)
-                  localStorage.setItem("universe_name", response.data.universe_name)
+                  localStorage.setItem("universe_name", response.data.firstname)
                 })
                 .catch(error => {
                     console.log(error)

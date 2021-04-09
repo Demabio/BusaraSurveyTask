@@ -57,7 +57,7 @@ export default {
                 .then(response => {
                     this.product = response.data
 
-                    document.title = this.product.name + ' | Djackets'
+                    document.title = this.product.name + ' | Busara Survey Platform'
                 })
                 .catch(error => {
                     console.log(error)

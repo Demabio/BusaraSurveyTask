@@ -44,14 +44,15 @@
               </template>
 
               <template v-else>
-                <router-link to="/log-in" class="button is-light">Log in</router-link>
+                <router-link to="/log-in" class="button is-success">Log in</router-link>
               </template>
-
+              <template v-if="$store.state.isAuthenticated">
               <router-link to="/cart" class="button is-success">
                 <span class="icon"><i class="fas fa-user"></i></span>
                 <span>Logged As ({{ cartTotalLength }})</span>
               </router-link>
               <button @click="logout()" class="button is-danger">Log out</button>
+                </template>
             </div>
           </div>
         </div>
