@@ -1,3 +1,3 @@
 # Busara Survey Task
 
-This repository is a part of a YouTube tutorial.
+This repository is a Busara Survey Task.
