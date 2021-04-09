@@ -98,17 +98,7 @@ export default {
   mounted() {
     this.cart = this.$store.state.cart
   },
-  logout() {
-    axios.defaults.headers.common["Authorization"] = ""
-
-    localStorage.removeItem("token")
-    localStorage.removeItem("username")
-    localStorage.removeItem("userid")
-
-    this.$store.commit('removeToken')
-
-    this.$router.push('/login')
-  },
+ 
   computed: {
       cartTotalLength() {
         let name= localStorage.getItem("name")
@@ -122,7 +112,20 @@ export default {
      console.log('Kwa majina ni:'+name)
     return name
   },
+ 
+  methods: {
+    logout() {
+      axios.defaults.headers.common["Authorization"] = ""
 
+      localStorage.removeItem("token")
+      localStorage.removeItem("username")
+      localStorage.removeItem("userid")
+      localStorage.removeItem("name")
+      this.$store.commit('removeToken')
+
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 

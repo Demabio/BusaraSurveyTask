@@ -63,12 +63,18 @@ const routes = [
   {
     path: '/cart',
     name: 'Cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/cart/success',
     name: 'Success',
-    component: Success
+    component: Success,
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/cart/checkout',
@@ -81,12 +87,18 @@ const routes = [
   {
     path: '/:category_slug/:product_slug',
     name: 'Product',
-    component: Product
+    component: Product,
+    meta: {
+      requireLogin: true
+    }
   },
   {
     path: '/:category_slug',
     name: 'Category',
-    component: Category
+    component: Category,
+    meta: {
+      requireLogin: true
+    }
   }
 ]
 
