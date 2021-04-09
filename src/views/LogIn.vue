@@ -144,6 +144,7 @@ export default {
             const toPath = this.$route.query.to || '/my-survey'
 
             this.$router.push(toPath)
+            // location.reload(true);
           })
           .catch(error => {
             if (error.response) {

@@ -124,6 +124,7 @@ export default {
       this.$store.commit('removeToken')
 
       this.$router.push('/')
+      // location.reload(true);
     }
   }
 }
