@@ -47,7 +47,7 @@
           <fieldset>
             <legend class="has-background-success">Compare Images</legend>
             <mdb-container class="mt-5">
-            <labe>What Does the image imply?</labe>
+            <label>What Does the image imply?</label>
               <label>You Can Choose More than one option</label>
               <br/>
               <select v-model="multiselected" multiple>
