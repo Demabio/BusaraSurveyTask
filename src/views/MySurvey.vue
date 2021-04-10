@@ -104,8 +104,10 @@ import axios from 'axios'
 import { toast } from 'bulma-toast'
 // import { mdbContainer, mdbRow, mdbCol, mdbIcon, mdbBtn, mdbLightbox, mdbCarousel, mdbCard, mdbModal, mdbModalHeader, mdbModalTitle, mdbModalBody, mdbModalFooter, mdbNavItem } from "mdbvue";
 var token=localStorage.getItem("token");
+var startDateTime=localStorage.getItem("startDateTime");
+
 export default {
-  name: 'SignUp',
+  name: 'My-survey',
   data() {
     return {
       username: '',
@@ -159,7 +161,10 @@ export default {
     async submitForm() {
       this.errors = []
 
-     
+  
+      var str = this.selected ;
+      var resgender = str.substring(0, 1);
+      console.log(resgender)
       if (this.full_name === '') {
         this.errors.push('The full name is missing')
       }
@@ -176,7 +181,19 @@ export default {
       if (this.DOB ==='') {
         this.errors.push('The DOB is missing')
       }
-
+      var now = new Date();
+      //Pad given value to the left with "0"
+      function AddZero(num) {
+        return (num >= 0 && num < 10) ? "0" + num : num + "";
+      }
+      var endDateTime = [[AddZero(now.getDate()),
+        AddZero(now.getMonth() + 1),
+        now.getFullYear()].join("/"),
+        [AddZero(now.getHours()),
+          AddZero(now.getMinutes())].join(":"),
+        now.getHours() >= 12 ? "PM" : "AM"].join(" ");
+      // document.getElementById("Console").innerHTML = "Now: " + endDateTime;
+      
       if (!this.errors.length) {
         const formData = {
           username: this.multiselected,
@@ -194,7 +211,7 @@ export default {
             "q_id": "8290"
           }, {
             "column_match": "gender",
-            "q_ans": this.selected,
+            "q_ans": resgender,
             "q_id": "8286"
           },{
             "column_match": "phone_number",
@@ -209,18 +226,19 @@ export default {
             "q_ans": this.DOB,
             "q_id": "8287"
           }],
-          "end_time": "2021-02-03 11:35:16.649 +0300",
+          "end_time": endDateTime,
           "local_id": 0,
           "location": {
             "accuracy": 0,
             "lat": 0,
             "lon": 0
           },
-          "start_time": "2021-02-03 11:27:37.739 +0300",
+          "start_time": startDateTime,
           "survey_id": "4124",
         }]
         const fmdata={
           chepkite
+          
         };
         await axios.create({
           headers: {'Content-Type': 'application/json',
