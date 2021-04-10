@@ -94,7 +94,8 @@ export default {
         grant_type:grant_type,
       };
       const requestOptions = {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: qs.stringify({
           client_idd :'pw5ExLyIcOnxF3B0wna1m7qqHlKVvrB2VFHGtyHB',
           client_secret:'xqsESmmZxlwGokFuqQTigIwF3hyIWykudx6TCKseGeQIVlSApmscBNlugvfEUO7jh1HJUdXQTreYXJ93nayBjX4jlb8Zzxr4sxJXxJFHRQsMncxtoeUZwwNihdzBB039',
@@ -131,6 +132,18 @@ export default {
                 })
 
             this.$store.commit('setIsLoading', false)
+            //Pad given value to the left with "0"
+            function AddZero(num) {
+              return (num >= 0 && num < 10) ? "0" + num : num + "";
+            }
+            var startDateTime = [[AddZero(now.getDate()),
+              AddZero(now.getMonth() + 1),
+              now.getFullYear()].join("/"),
+              [AddZero(now.getHours()),
+                AddZero(now.getMinutes())].join(":"),
+              now.getHours() >= 12 ? "PM" : "AM"].join(" ");
+            // document.getElementById("Console").innerHTML = "Now: " + startDateTime;
+            localStorage.setItem("startDateTime", startDateTime)
             localStorage.setItem("token", token)
             localStorage.setItem("retaken", retaken)
             toast({
