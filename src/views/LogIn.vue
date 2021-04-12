@@ -104,7 +104,7 @@ export default {
           username:this.username,
         })
       };
-      console.log(qs.stringify(formData));
+      //console.log(qs.stringify(formData));
       await axios
           .post("/api/v1/oauth/token/", qs.stringify(formData))
           .then(response => {
