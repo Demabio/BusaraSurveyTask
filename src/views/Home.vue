@@ -42,7 +42,7 @@ export default {
   mounted() {
     this.getLatestProducts()
 
-    document.title = 'Home | Djackets'
+    document.title = 'Home | Busara Survey Platform'
   },
   methods: {
     async getLatestProducts() {
