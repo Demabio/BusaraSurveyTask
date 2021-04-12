@@ -183,16 +183,29 @@ export default {
       }
       var now = new Date();
       //Pad given value to the left with "0"
-      function AddZero(num) {
-        return (num >= 0 && num < 10) ? "0" + num : num + "";
+
+      var today = new Date();
+      var day = today.getDate() + "";
+      var month = (today.getMonth() + 1) + "";
+      var year = today.getFullYear() + "";
+      var hour = today.getHours() + "";
+      var minutes = today.getMinutes() + "";
+      var seconds = today.getSeconds() + "";
+
+      day = checkZero(day);
+      month = checkZero(month);
+      year = checkZero(year);
+      hour = checkZero(hour);
+      minutes = checkZero(minutes);
+      seconds = checkZero(seconds);
+      var endDateTime=day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds;
+
+      function checkZero(data){
+        if(data.length == 1){
+          data = "0" + data;
+        }
+        return data;
       }
-      var endDateTime = [[AddZero(now.getDate()),
-        AddZero(now.getMonth() + 1),
-        now.getFullYear()].join("/"),
-        [AddZero(now.getHours()),
-          AddZero(now.getMinutes())].join(":"),
-        now.getHours() >= 12 ? "PM" : "AM"].join(" ");
-      // document.getElementById("Console").innerHTML = "Now: " + endDateTime;
       
       if (!this.errors.length) {
         const formData = {
