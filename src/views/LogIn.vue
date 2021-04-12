@@ -133,16 +133,31 @@ export default {
 
             this.$store.commit('setIsLoading', false)
             //Pad given value to the left with "0"
-            function AddZero(num) {
-              return (num >= 0 && num < 10) ? "0" + num : num + "";
+            
+            var today = new Date();
+            var day = today.getDate() + "";
+            var month = (today.getMonth() + 1) + "";
+            var year = today.getFullYear() + "";
+            var hour = today.getHours() + "";
+            var minutes = today.getMinutes() + "";
+            var seconds = today.getSeconds() + "";
+
+            day = checkZero(day);
+            month = checkZero(month);
+            year = checkZero(year);
+            hour = checkZero(hour);
+            minutes = checkZero(minutes);
+            seconds = checkZero(seconds);
+            var startDateTime=day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds;
+
+            function checkZero(data){
+              if(data.length == 1){
+                data = "0" + data;
+              }
+              return data;
             }
-            var startDateTime = [[AddZero(now.getDate()),
-              AddZero(now.getMonth() + 1),
-              now.getFullYear()].join("/"),
-              [AddZero(now.getHours()),
-                AddZero(now.getMinutes())].join(":"),
-              now.getHours() >= 12 ? "PM" : "AM"].join(" ");
-            // document.getElementById("Console").innerHTML = "Now: " + startDateTime;
+            console.log('Hivi sasa:'+startDateTime);
+
             localStorage.setItem("startDateTime", startDateTime)
             localStorage.setItem("token", token)
             localStorage.setItem("retaken", retaken)
@@ -167,7 +182,7 @@ export default {
             } else {
               this.errors.push('Something went wrong. Please try again')
 
-              console.log(JSON.stringify(error))
+              console.log(JSON.stringify('busara error response:'+error))
             }
           })
     }
